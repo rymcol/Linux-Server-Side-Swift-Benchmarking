@@ -17,6 +17,6 @@ import PerfectLib
 struct Config {
 
 	//Server Details
-	let ip: String = "169.254.237.101"
+	let ip: String = "10.0.1.11"
 	let port: UInt16 = 8181
 }
