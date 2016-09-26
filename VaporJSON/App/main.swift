@@ -13,7 +13,7 @@ let drop = Droplet(availableMiddleware: [:])
 
 drop.get("json") { request in
 
-    return JSON(JSONCreator().generateJSON())
+    return try JSON(node: JSONCreator().generateJSON())
 }
 
 let port = drop.config["app", "port", "host"]?.int ?? 80

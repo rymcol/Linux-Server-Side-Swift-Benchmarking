@@ -7,7 +7,7 @@ import Vapor
 #endif
 
 struct JSONCreator {
-    func generateJSON() -> Node {
+    func generateJSON() -> [String: Node] {
         
         var finalJSON = [String: Node]()
         
@@ -16,6 +16,6 @@ struct JSONCreator {
             finalJSON["Test Number \(i)"] = Node(randomNumber)
         }
         
-        return Node(finalJSON)
+        return finalJSON
     }
 }
