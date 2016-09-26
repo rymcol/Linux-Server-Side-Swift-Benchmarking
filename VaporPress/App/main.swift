@@ -11,6 +11,8 @@ public func arc4random_uniform(_ max: UInt32) -> Int32 {
 
 let drop = Droplet()
 
+let _ = drop.config["app", "key"]?.string ?? ""
+
 drop.get("/") { request in
     let header = CommonHandler().getHeader()
     let footer = CommonHandler().getFooter()
@@ -31,11 +33,9 @@ drop.get("blog") { request in
 
 drop.get("json") { request in
 
-    return try JSON(JSONCreator().generateJSON())
+    return JSON(JSONCreator().generateJSON())
 }
 
 let port = drop.config["app", "port", "host"]?.int ?? 80
 
-// Print what link to visit for default port
-print("Visit http://localhost:\(port)")
-drop.serve()
+drop.run()
