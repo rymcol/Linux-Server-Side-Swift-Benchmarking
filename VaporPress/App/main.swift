@@ -9,7 +9,8 @@ public func arc4random_uniform(_ max: UInt32) -> Int32 {
 }
 #endif
 
-let drop = Droplet()
+let drop = Droplet(availableMiddleware: [
+    "files": FileMiddleware(workDir: "/Users/ryan/Developer/Server-Side-Swift-Benchmarking/")])
 
 let _ = drop.config["app", "key"]?.string ?? ""
 
