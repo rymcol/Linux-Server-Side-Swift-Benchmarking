@@ -2,7 +2,7 @@
 import JSON
 
 #if os(Linux)
-import Glibc
+import SwiftGlibc
 #else
 import Darwin
 #endif
