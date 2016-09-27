@@ -1,7 +1,7 @@
 import SwiftyJSON
 
 #if os(Linux)
-import Glibc
+import SwiftGlibc
 #else
 import Darwin
 #endif
@@ -13,7 +13,7 @@ struct JSONCreator {
 
         for i in 1...10 {
             let randomNumber = Int(arc4random_uniform(UInt32(1000)))
-            finalJSON["Test Number \(i)"] = randomNumber
+            finalJSON["Test Number \(i)"] = randomNumber as AnyObject?
         }
 
         return finalJSON
