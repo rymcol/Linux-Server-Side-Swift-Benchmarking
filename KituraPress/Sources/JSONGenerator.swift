@@ -7,13 +7,13 @@ import Darwin
 #endif
 
 struct JSONCreator {
-    func generateJSON() -> [String: AnyObject] {
+    func generateJSON() -> [String: Any] {
 
-        var finalJSON = [String: AnyObject]()
+        var finalJSON = [String: Any]()
 
         for i in 1...10 {
             let randomNumber = Int(arc4random_uniform(UInt32(1000)))
-            finalJSON["Test Number \(i)"] = randomNumber as AnyObject?
+            finalJSON["Test Number \(i)"] = randomNumber
         }
 
         return finalJSON
