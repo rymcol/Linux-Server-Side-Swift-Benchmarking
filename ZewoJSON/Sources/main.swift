@@ -19,4 +19,4 @@ let app = BasicRouter { route in
     }
 }
 
-try HTTPServer.Server(host: "0.0.0.0", port: 8282, responder: app).start()
+try HTTPServer.Server(configuration: ["tcp": ["host": "0.0.0.0", "port": 8282], "log": false], responder: app).start()
