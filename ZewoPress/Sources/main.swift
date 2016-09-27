@@ -1,6 +1,5 @@
-import Zewo
 import HTTPServer
-import Router
+//import Router
 import JSON
 
 
@@ -12,7 +11,7 @@ public func arc4random_uniform(_ max: UInt32) -> Int32 {
 }
 #endif
 
-let app = Router { route in
+let app = BasicRouter { route in
     route.get("/") { request in
 
         let header = CommonHandler().getHeader()
@@ -41,7 +40,7 @@ let app = Router { route in
     }
 
     //serves static files
-    route.get("/*", responder: ThreadedFileResponder(path: "webroot/"))
+    route.get("/*", responder: FileResponder(path: "webroot/"))
 }
 
 try HTTPServer.Server(host: "0.0.0.0", port: 8282, responder: app).start()

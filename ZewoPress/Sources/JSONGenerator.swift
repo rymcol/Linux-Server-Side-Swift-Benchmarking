@@ -1,4 +1,3 @@
-
 import JSON
 
 #if os(Linux)
