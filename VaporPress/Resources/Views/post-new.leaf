@@ -1,4 +1,4 @@
-{{>header}}
+#embed("embeds/header")
 
     <section id="content">
       <div class="container">
@@ -25,4 +25,4 @@
       </div>
     </section>
 
-{{>footer}}
+#embed("embeds/footer")

@@ -42,4 +42,4 @@ let app = BasicRouter { route in
     route.get("/*", responder: FileResponder(path: "webroot/"))
 }
 
-try HTTPServer.Server(configuration: ["tcp": ["host": "0.0.0.0", "port": 8282, "reusePort": true], "log": false], responder: app).start()
+try HTTPServer.Server(host: "0.0.0.0", port: 8282, reusePort: true, responder: app).start()

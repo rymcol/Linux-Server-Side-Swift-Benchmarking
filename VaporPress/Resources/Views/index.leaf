@@ -1,4 +1,4 @@
-{{>header}}
+#embed("embeds/header")
 
   <section id="content">
     <div class="container">
@@ -15,12 +15,12 @@
 
       <div class="row">
         <div class="col-xs-12">
-          <h1>{{post_title}}</h1>
-          <img src="{{featuredImageURI}}" alt="{{featuredImageAltText}}" class="alignleft feature-image img-responsive" />
-          <div class="content">{{{post_content}}}</div>
+            <h1>{{post_title}}</h1>
+            <img src="#(featuredImageURI)" alt="#(featuredImageAltText)" class="alignleft feature-image img-responsive" />
+            <div class="content">#(post_content)</div>
         </div>
       </div>
     </div>
   </section>
 
-{{>footer}}
+#embed("embeds/footer")
