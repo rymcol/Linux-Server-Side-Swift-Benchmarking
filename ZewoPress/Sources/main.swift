@@ -1,6 +1,4 @@
 import HTTPServer
-import JSON
-
 
 #if os(Linux)
 import SwiftGlibc
@@ -33,13 +31,12 @@ let app = BasicRouter { route in
 
     route.get("json") { request in
 
-        let jsonString = JSON(JSONCreator().generateJSON())
+        let json = JSONCreator().generateJSON()
 
-        return Response(body: "\(jsonString)")
+        return Response(content: json, contentType: .json)
     }
-
-    //serves static files
-    route.get("/*", responder: FileResponder(path: "webroot/"))
 }
 
-try HTTPServer.Server(host: "0.0.0.0", port: 8282, reusePort: true, responder: app).start()
+let contentNegotiation = ContentNegotiationMiddleware(mediaTypes: [.json])
+
+try Server(port: 8283, reusePort: true, middleware: [contentNegotiation], responder: app).start()
