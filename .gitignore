@@ -2,7 +2,7 @@
 .DS_Store
 .Trashes
 *.swp
-.out
+*.out
 
 #Project
 .build
