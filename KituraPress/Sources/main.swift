@@ -21,9 +21,11 @@ router.get("/") { _, response, next in
 
 router.get("/blog") { _, response, next in
      response.headers["Content-Type"] = "text/html; charset=utf-8"
-     try response.send(fileName: "views/header.mustache")
-     response.send(BlogHandler().loadPageContent())
-     try response.send(fileName: "views/footer.mustache").end()
+     let header = CommonHandler().getHeader()
+     let footer = CommonHandler().getFooter()
+     let body = BlogHandler().loadPageContent()
+     let blogPage = header + body + footer
+     try response.send(blogPage).end()
 }
 
 router.get("/json") { _, response, next in

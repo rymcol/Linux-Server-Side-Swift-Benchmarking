@@ -6,7 +6,7 @@ module.exports = {
         var finalContent = "<section id=\"content\"><div class=\"container\">";
     	const generatedContent = content.generateContent();
 
-    	for (i = 0; i < 6; i++) {
+    	for (i = 0; i < 5; i++) {
     		var randomIndex = Math.floor(Math.random() * 50);
     		var post = generatedContent[randomIndex];
 
