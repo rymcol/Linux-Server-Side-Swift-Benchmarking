@@ -11,9 +11,9 @@ struct IndexHandler {
         let randomContent = ContentGenerator().generate()
 
         if let firstPost = randomContent["Test Post 1"] {
-            post = firstPost as! String
+            post = firstPost
         }
-        
+
         let imageNumber = Int(arc4random_uniform(25) + 1)
 
         var finalContent = "<section id=\"content\"><div class=\"container\"><div class=\"row\"><div class=\"banner center-block\"><div><img src=\"/img/banner@2x.png\" alt=\"Swift Based Blog\" class=\"img-responsive banner center-block\" /></div> <div><img src=\"/img/random/random-1.jpg\" alt=\"Swift Based Blog\" class=\"img-responsive banner center-block\" /></div> <div><img src=\"/img/random/random-2.jpg\" alt=\"Swift Based Blog\" class=\"img-responsive banner center-block\" /></div> <div><img src=\"/img/random/random-3.jpg\" alt=\"Swift Based Blog\" class=\"img-responsive banner center-block\" /></div> <div><img src=\"/img/random/random-4.jpg\" alt=\"Swift Based Blog\" class=\"img-responsive banner center-block\" /></div> <div><img src=\"/img/random/random-5.jpg\" alt=\"Swift Based Blog\" class=\"img-responsive banner center-block\" /></div></div></div><div class=\"row\"><div class=\"col-xs-12\"><h1>"
