@@ -3,7 +3,7 @@ import SwiftyJSON
 
 #if os(Linux)
     import SwiftGlibc
-    
+
     public func arc4random_uniform(_ max: UInt32) -> Int32 {
         return (SwiftGlibc.rand() % Int32(max-1)) + 1
     }
@@ -13,10 +13,11 @@ import SwiftyJSON
 let router = Router()
 
 router.get("/") { _, response, next in
-     response.headers["Content-Type"] = "text/html; charset=utf-8"
-     try response.send(fileName: "views/header.mustache")
-     response.send(IndexHandler().generateContent())
-     try response.send(fileName: "views/footer.mustache").end()
+    let header = CommonHandler().getHeader()
+    let footer = CommonHandler().getFooter()
+    let body = IndexHandler().generateContent()
+    let homePage = header + body + footer
+    try response.send(homePage).end()
 }
 
 router.get("/blog") { _, response, next in
