@@ -39,4 +39,4 @@ let app = BasicRouter { route in
 
 let contentNegotiation = ContentNegotiationMiddleware(mediaTypes: [.json])
 
-try Server(port: 8283, reusePort: true, middleware: [contentNegotiation], responder: app).start()
+try Server(port: 8282, reusePort: true, middleware: [contentNegotiation], responder: app).start()
