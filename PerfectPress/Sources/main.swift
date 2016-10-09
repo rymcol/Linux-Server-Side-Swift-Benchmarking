@@ -21,8 +21,10 @@ import PerfectLib
 import PerfectHTTPServer
 
 #if os(Linux)
-public func arc4random_uniform(_ max: UInt32) -> Int {
-    return Int(random() % Int(max + 1))
+import SwiftGlibc
+
+public func arc4random_uniform(_ max: UInt32) -> Int32 {
+    return (SwiftGlibc.rand() % Int32(max-1)) + 1
 }
 #endif
 

@@ -3,10 +3,10 @@
 const express = require('express')
 const app = express()
 const port = 8585
-const host = "169.254.237.101"
+const host = "10.0.1.11"
 
-const indexHandler = require('./indexHandler')
-const blogHandler = require('./blogHandler')
+const indexHandler = require('./IndexHandler')
+const blogHandler = require('./BlogHandler')
 const commondHandler = require('./CommonHandler')
 
 /* Serve Static Files */

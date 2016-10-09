@@ -6,7 +6,7 @@ process.env.NODE_ENV='production'
 const express = require('express')
 const app = express()
 const port = 8585
-const host = "169.254.237.101"
+const host = "10.0.1.11"
 
 const commondHandler = require('./CommonHandler')
 
