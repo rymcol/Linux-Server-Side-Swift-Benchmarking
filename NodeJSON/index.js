@@ -1,6 +1,8 @@
 // Startpoint
 
-var numCPUs = 2;
+// use cluster module, gain = 5000+ req/s
+
+var numCPUs = 3;
 var cluster = require('cluster');
 if (cluster.isMaster) {
   // Fork workers.
