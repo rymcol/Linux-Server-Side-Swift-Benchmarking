@@ -1,5 +1,9 @@
-import Vapor
 import HTTP
+import HTTPRouting
+import Transport
+import TypeSafeRouting
+import Foundation
+import JSON
 
 #if os(Linux)
     import SwiftGlibc
@@ -9,15 +13,48 @@ import HTTP
     }
 #endif
 
-let drop = Droplet(availableMiddleware: [:])
-
-drop.get("json") { request in
-
-    return try JSON(node: JSONCreator().generateJSON())
+final class App: HTTP.Responder {
+    let router: Router
+    let port = 8321
+    
+    init() {
+        router = Router()
+        
+        router.get("json") { req in
+            
+            var json: Bytes = "{ ".bytes
+            
+            for (key, value) in JSONCreator().generateJSON() {
+                json += "\"".bytes
+                json += key.bytes
+                json += "\"".bytes
+                json += " : ".bytes
+                json += String(value).bytes
+                json += ", ".bytes
+            }
+            
+            json += " }".bytes
+            
+            return Response(status: .ok, headers: [
+                "Content-Type": "text/html; charset=utf-8"
+                ], body: json)
+        }
+    }
+    
+    func respond(to request: Request) throws -> Response {
+        if let handler = router.route(request, with: request) {
+            return try handler.respond(to: request)
+        } else {
+            return Response(status: .notFound, body: "Not found.")
+        }
+    }
 }
 
-let port = drop.config["app", "port", "host"]?.int ?? 80
+let app = App()
 
-// Print what link to visit for default port
-print("Visit http://localhost:\(port)")
-drop.run()
+let server = try Server<TCPServerStream, Parser<Request>, Serializer<Response>>(port: app.port)
+
+print("visit http://localhost:\(app.port)/")
+try server.start(responder: app) { error in
+    print("Got error: \(error)")
+}
