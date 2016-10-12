@@ -36,7 +36,7 @@ final class App: HTTP.Responder {
             json += " }".bytes
             
             return Response(status: .ok, headers: [
-                "Content-Type": "text/html; charset=utf-8"
+                "Content-Type": "application/json; charset=utf-8"
                 ], body: json)
         }
     }
