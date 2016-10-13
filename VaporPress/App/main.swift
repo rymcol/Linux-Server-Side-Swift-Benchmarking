@@ -29,7 +29,7 @@ final class App: HTTP.Responder {
             
             return Response(status: .ok, headers: [
                 "Content-Type": "text/html; charset=utf-8"
-                ], body: indexPage)
+            ], body: indexPage)
         }
         
         router.get("blog") { req in
@@ -40,7 +40,7 @@ final class App: HTTP.Responder {
             
             return Response(status: .ok, headers: [
                 "Content-Type": "text/html; charset=utf-8"
-                ], body: blogPage)
+            ], body: blogPage)
         }
     }
     
@@ -50,6 +50,7 @@ final class App: HTTP.Responder {
         } else {
             // Check in file system
             let filePath = "/home/ryan/Developer/Server-Side-Swift-Benchmarking/VaporPress/Public" + request.uri.path
+            //let filePath = "/Users/tanner/Desktop/Linux-Server-Side-Swift-Benchmarking/VaporPress/Public" + request.uri.path
             
             if let contents = file.contents(atPath: filePath), file.fileExists(atPath: filePath) {
                 var headers: [HeaderKey: String] = [:]

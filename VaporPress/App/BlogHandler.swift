@@ -6,11 +6,19 @@ import Core
     import Darwin
 #endif
 
+let start1 = "<section id=\"content\"><div class=\"container\">".bytes
+let start2 = "<div class=\"row blog-post\"><div class=\"col-xs-12\"><h1>Test Post ".bytes
+let start4 = "</h1><img src=\"/img/random/random-".bytes
+let start5 = ".jpg\" alt=\"Random Image ".bytes
+let start6 = "\" class=\"alignleft feature-image img-responsive\" /><div class=\"content\">".bytes
+let start7 = "</div>".bytes
+let start8 = "</div></div</div></section>".bytes
+
 struct BlogPageHandler {
     
     func loadPageContent() -> Bytes {
         
-        var finalContent = "<section id=\"content\"><div class=\"container\">".bytes
+        var finalContent = start1
         
         let randomContent = ContentGenerator().generate()
         
@@ -19,16 +27,18 @@ struct BlogPageHandler {
             let value = Array(randomContent.values)[index]
             let imageNumber = Int(arc4random_uniform(25) + 1)
             
-            finalContent += "<div class=\"row blog-post\"><div class=\"col-xs-12\"><h1>".bytes
-            finalContent += "Test Post \(index)".bytes
-            finalContent += "</h1><img src=\"".bytes
-            finalContent += "/img/random/random-\(imageNumber).jpg\" alt=\"Random Image \(imageNumber)\" class=\"alignleft feature-image img-responsive\" />".bytes
-            finalContent += "<div class=\"content\">".bytes
+            finalContent += start2
+            finalContent += "\(index)".bytes
+            finalContent += start4
+            finalContent += "\(imageNumber)".bytes
+            finalContent += start5
+            finalContent += "\(imageNumber)".bytes
+            finalContent += start6
             finalContent += value
-            finalContent += "</div>".bytes
+            finalContent += start7
         }
         
-        finalContent += "</div></div</div></section>".bytes
+        finalContent += start8
         
         return finalContent
     }
