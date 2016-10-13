@@ -1,5 +1,8 @@
 // app/index.js
 
+// force production mode, gain = less than 500 req/s
+process.env.NODE_ENV='production'
+
 const express = require('express')
 const app = express()
 const port = 8585
@@ -7,14 +10,18 @@ const host = "10.0.1.11"
 
 const commondHandler = require('./CommonHandler')
 
-/* Serve Static Files */
-app.use(express.static('public'));
+// disable automatic eTag header, gain = 2000 req/s
+// SHA hash isn't free
+app.set('etag', false);
 
 app.get('/json', (request, response) => {
-	const jsonData = commondHandler.makeJSON();
-	response.setHeader('Content-Type', 'application/json');
-	response.send(JSON.stringify(jsonData))
+	var jsonData = commondHandler.makeJSONfast();
+	response.json(jsonData);
+  response.end()
 })
+
+/* Serve Static Files after /json, gain = 4000 req/s !*/
+app.use(express.static('public'));
 
 app.listen(port, host, (err) => {
   if (err) {

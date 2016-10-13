@@ -1,6 +1,8 @@
 // Startpoint
 
-var numCPUs = 4;
+// use cluster module, gain = 5000+ req/s
+
+var numCPUs = 2; // only 2 cores on my MBP
 var cluster = require('cluster');
 if (cluster.isMaster) {
   // Fork workers.
