@@ -1,7 +1,7 @@
 module.exports = {
     
     makeJSON: function () {
-	    var dict = {}
+	    var dict = {};
 
 	    for(i = 1; i < 11; i++) {
 		    var randomNumber = Math.floor(Math.random() * 1000);
@@ -9,6 +9,6 @@ module.exports = {
 		    dict[testNum] = randomNumber;
 	    }
 
-	    return dict
+	    return dict;
     }
 };
